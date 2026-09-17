@@ -1,3 +1,15 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f1f5f9;
+}
+
 .container {
   max-width: 900px;
   margin: 2.5rem auto;
@@ -43,6 +55,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .label-row label {
@@ -61,6 +74,8 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
 }
 
 .upload-btn:hover {
@@ -79,6 +94,7 @@ textarea {
   line-height: 1.5;
   resize: vertical;
   outline: none;
+  box-sizing: border-box;
 }
 
 textarea:focus {
@@ -275,8 +291,14 @@ textarea:focus {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 540px;
+  max-width: 450px;
   text-align: left;
+}
+
+.history-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .history-view-btn {
@@ -294,4 +316,22 @@ textarea:focus {
 .history-view-btn:hover {
   background: #e2e8f0;
   color: #0f172a;
+}
+
+.history-delete-btn {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dc2626;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.history-delete-btn:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
 }

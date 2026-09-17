@@ -22,7 +22,7 @@ function App() {
         setHistory(data.reverse());
       }
     } catch {
-      // History fetch fails silently if backend is offline on mount
+      // Fails silently if backend is offline
     }
   };
 
@@ -122,6 +122,22 @@ function App() {
       feedback: item.feedback,
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
+    try {
+      const response = await fetch(`http://localhost:8080/api/resumes/history/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setHistory((prev) => prev.filter((item) => item.id !== id));
+      } else {
+        setError("Failed to delete history item.");
+      }
+    } catch {
+      setError("Network error while deleting item.");
+    }
   };
 
   return (
@@ -228,7 +244,15 @@ function App() {
                     {scan.resumeText.slice(0, 75)}...
                   </span>
                 </div>
-                <button className="history-view-btn">Review</button>
+                <div className="history-actions">
+                  <button className="history-view-btn">Review</button>
+                  <button
+                    className="history-delete-btn"
+                    onClick={(e) => handleDelete(e, scan.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>
